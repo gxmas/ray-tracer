@@ -1,0 +1,53 @@
+name:                ray-tracer
+version:             0.1.0.0
+homepage:            https://bbgithub.dev.bloomberg.com/gnoel/ray-tracer#readme
+license:             AllRightsReserved
+license-file:        LICENSE
+author:              "Geoffrey Noel"
+maintainer:          "gnoel5@bloomberg.net"
+copyright:           "Copyright Bloomberg L.P. (c) 2020"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Initial Bloomberg project template from stack
+category:            Misc
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see README.md
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  ray-tracer.tsk:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -Wall
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - ray-tracer
+
+tests:
+  ray-tracer-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -Wall
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - ray-tracer
+    - hspec
+    - QuickCheck

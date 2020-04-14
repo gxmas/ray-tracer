@@ -1,0 +1,14 @@
+.stack-work/
+*.aux
+*.hi
+*.hp
+*.o
+*.prof
+*.ps
+/.cabal-sandbox/
+/.haskell-bpkg/
+.stack-work/
+/cabal.sandbox.config
+/dist/
+highlight.js
+style.css

@@ -1,0 +1,6 @@
+resolver: https://bbhackage.dev.bloomberg.com/stack/bblts/bblts-14.12.1.yaml
+packages:
+- '.'
+extra-deps: []
+flags: {}
+extra-package-dbs: []
