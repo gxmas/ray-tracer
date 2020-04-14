@@ -1,0 +1,67 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: bcdc115b05e05cf5b33d02f86d0fc1ee8e511d9da1d385f1b83084193817e8eb
+
+name:           ray-tracer
+version:        0.1.0.0
+synopsis:       Initial Bloomberg project template from stack
+description:    Please see README.md
+category:       Misc
+homepage:       https://bbgithub.dev.bloomberg.com/gnoel/ray-tracer#readme
+author:         Geoffrey Noel
+maintainer:     gnoel5@bloomberg.net
+copyright:      Copyright Bloomberg L.P. (c) 2020
+license:        AllRightsReserved
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+library
+  exposed-modules:
+      Point
+      Types
+      Vector
+  other-modules:
+      Paths_ray_tracer
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable ray-tracer.tsk
+  main-is: Main.hs
+  other-modules:
+      Paths_ray_tracer
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , ray-tracer
+  default-language: Haskell2010
+
+test-suite ray-tracer-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      PointSpec
+      TypesSpec
+      Util
+      VectorSpec
+      Paths_ray_tracer
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , hspec
+    , ray-tracer
+  default-language: Haskell2010
