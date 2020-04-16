@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bcdc115b05e05cf5b33d02f86d0fc1ee8e511d9da1d385f1b83084193817e8eb
+-- hash: 362c28df8eed2a2f3dfc21216c97fffeba224f38603b3c7b9cfbc87f0a8d3875
 
 name:           ray-tracer
 version:        0.1.0.0
@@ -24,6 +24,7 @@ extra-source-files:
 
 library
   exposed-modules:
+      Color
       Point
       Types
       Vector
@@ -51,6 +52,7 @@ test-suite ray-tracer-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      ColorSpec
       PointSpec
       TypesSpec
       Util

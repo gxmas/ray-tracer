@@ -1,6 +1,7 @@
 module Util where
 
 import Test.QuickCheck.Arbitrary
+import Color
 import Types
 
 class FloatEq a where
@@ -17,9 +18,15 @@ instance FloatEq Point where
 instance FloatEq Vector where
     (Vector x1 y1 z1) ~== (Vector x2 y2 z2) = x1 ~== x2 && y1 ~== y2 && z1 ~== z2
 
+instance FloatEq Color where
+    (Color r1 g1 b1) ~== (Color r2 g2 b2) = r1 ~== r2 && g1 ~== g2 && b1 ~== b2
+
 
 instance Arbitrary Vector where
     arbitrary = Vector <$> arbitrary <*> arbitrary <*> arbitrary
 
 instance Arbitrary Point where
     arbitrary = Point <$> arbitrary <*> arbitrary <*> arbitrary
+
+instance Arbitrary Color where
+    arbitrary = Color <$> arbitrary <*> arbitrary <*> arbitrary
