@@ -1,6 +1,13 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE TypeSynonymInstances #-}
+{-# OPTIONS_GHC -fno-warn-orphans #-}
+
 module Util where
 
 import Test.QuickCheck.Arbitrary
+import Test.QuickCheck.Gen
+import Test.QuickCheck.Modifiers
+import Canvas
 import Color
 import Types
 
@@ -27,6 +34,12 @@ instance Arbitrary Vector where
 
 instance Arbitrary Point where
     arbitrary = Point <$> arbitrary <*> arbitrary <*> arbitrary
+
+instance Arbitrary Canvas where
+    arbitrary = do
+        w <- choose (0, 500)
+        h <- choose (0, 500)
+        pure $ newCanvas w h
 
 instance Arbitrary Color where
     arbitrary = Color <$> arbitrary <*> arbitrary <*> arbitrary

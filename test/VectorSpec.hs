@@ -14,10 +14,8 @@ spec :: Spec
 spec = do
     describe "Vector Operations" $ do
         it "Adding a Vector to a Vector" $ property $
-            \x1 y1 z1 x2 y2 z2 ->
-                let result   = (Vector x1 y1 z1) `addVector` (Vector x2 y2 z2)
-                    expected = Vector (x1+x2) (y1+y2) (z1+z2)
-                in expected ~== result
+            \v1@(Vector x1 y1 z1) v2@(Vector x2 y2 z2) ->
+                Vector (x1+x2) (y1+y2) (z1+z2) ~== v1 `addVector` v2
         it "Substracting a Vector to a Vector" $ property $
             \x1 y1 z1 x2 y2 z2 ->
                 let result   = (Vector x1 y1 z1) `subVector` (Vector x2 y2 z2)
@@ -65,22 +63,37 @@ spec = do
                           , zero `addVector` v ~== v
                           , v `addVector` zero ~== v
                           ]
-        it "Vector Addition is Commutative" $ property $
-            \v1 v2 -> v1 `addVector` v2 ~== v2 `addVector` v1
         it "Vector Addition is Associative" $ property $
-            \v1 v2 v3 -> (v1 `addVector` v2) `addVector` v3 ~== v1 `addVector` (v2 `addVector` v3)
-        it "Negating a Vector is Involutive" $ property $
-            \v -> (negVector . negVector) v ~== v
-        it "Normalized Vector has Magnitue of 1.0" $ property $
+            \v1 v2 v3 ->
+                (v1 `addVector` v2) `addVector` v3 ~== v1 `addVector` (v2 `addVector` v3)
+        it "Vector Addition is Commutative" $ property $
+            \v1 v2 ->
+                v1 `addVector` v2 ~== v2 `addVector` v1
+        it "Addition and Subtraction are reversable operations" $ property $
+            \v1 v2 ->
+                v1 ~== v1 `addVector` v2 `subVector` v2
+        it "Subtraction and Addition are reversable operations" $ property $
+            \v1 v2 ->
+                v1 ~== v1 `subVector` v2 `addVector` v2
+        it "Equivalence between Vector addition and scalar mulplication" $ property $
+            \v ->
+                v `addVector` v ~== v `scalarMul` 2.0
+        it "Vector Negation is Involutive" $ property $
+            \v ->
+                v ~== (negVector . negVector) v
+        it "Normalized Vector is a Unit Vector" $ property $
             \v -> v /= zero ==>
-                magnitude (normalize v) ~== 1.0
+                1.0 ~== magnitude (normalize v)
+        it "Normalization of Vector is idempotent" $ property $
+            \v -> v /= zero ==>
+                normalize v ~== (normalize . normalize) v
         it "Dot Product of a unit Vector with itself is 1.0" $ property $
             \v -> v /= zero ==>
                 let v' = normalize v
-                in v' `dotProduct` v' ~== 1.0
+                in 1.0 ~== v' `dotProduct` v'
         it "Dot Product of two unit Vectors of opposite direction is -1.0" $ property $
             \v -> v /= zero ==>
                 let v' = normalize v
-                in v' `dotProduct` (negVector v') ~== (-1.0)
-        it "Cross w v = negate (Cross v w)" $ property $
+                in (-1.0) ~== v' `dotProduct` (negVector v')
+        it "Cross w v is the Negation of Cross v w" $ property $
             \ v w -> crossProduct w v ~== negVector (crossProduct v w)
