@@ -6,10 +6,8 @@ module Util where
 
 import Test.QuickCheck.Arbitrary
 import Test.QuickCheck.Gen
-import Test.QuickCheck.Modifiers
-import Canvas
-import Color
-import Types
+import Canvas (newCanvas)
+import Internal.Types
 
 class FloatEq a where
     infix 4 ~==

@@ -5,8 +5,8 @@ import Test.QuickCheck
 
 import Point
 import Vector (negVector)
-import Types
 import Util
+import Internal.Types
 
 main :: IO ()
 main = hspec spec

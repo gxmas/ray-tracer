@@ -3,7 +3,7 @@ module VectorSpec where
 import Test.Hspec
 import Test.QuickCheck
 
-import Types
+import Internal.Types
 import Util
 import Vector
 

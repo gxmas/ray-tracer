@@ -7,7 +7,7 @@ module Point
     , subVector
     ) where
 
-import Types
+import Internal.Types
 
 -- |Add a @Vector@ to a @Point@ by adding the components pairwise
 addVector :: Point -> Vector -> Point

@@ -14,7 +14,7 @@ module Vector
     , crossProduct
     ) where
 
-import Types
+import Internal.Types
 
 -- |@zero@ is a @Vector@ with each of its components equal to 0.0.  It is the
 --  identity element under addition.

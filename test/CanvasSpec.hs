@@ -6,6 +6,7 @@ import Test.Hspec
 import Test.QuickCheck
 
 import Canvas
+import Internal.Types
 
 import qualified Data.Vector.Unboxed as U
 
@@ -21,9 +22,9 @@ spec = do
             greenPixel `shouldBe` (0.0, 1.0, 0.0)
             bluePixel `shouldBe` (0.0, 0.0, 1.0)
             whitePixel `shouldBe` (1.0, 1.0, 1.0)
---    describe "Canvas Operation" $ do
---         it "Creating new Canvas" $ property $
---             \(Positive w) (Positive h) ->
---                 w * h <= 50000 ==>
---                     let c@(Canvas{..}) = newCanvas w h
---                     in U.length vector == w*h && U.all (== blackPixel) c
+    describe "Canvas Operation" $ do
+         it "Creating new Canvas" $ property $
+             \(Positive w) (Positive h) ->
+                 w * h <= 50000 ==>
+                     let (Canvas{..}) = newCanvas w h
+                     in U.length vdata == w*h && U.all (== blackPixel) vdata

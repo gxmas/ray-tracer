@@ -1,5 +1,4 @@
 {-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE DuplicateRecordFields #-}
 
 module Canvas
     ( Canvas
@@ -16,36 +15,7 @@ module Canvas
     ) where
 
 import qualified Data.Vector.Unboxed as U
-
--- |A type synonym to represent a @Pixel@
-type Pixel  = (Double,Double,Double)
-
-type Width  = Int
-type Height = Int
-
--- |A @Canvas@ represents an immutable @Canvas@
-data Canvas = Canvas
-    { width  :: !Width
-    , height :: !Height
-    , vector :: !(U.Vector Pixel)
-    }
-
--- |A @Canvas@ represents a mutable @Canvas@
-data MCanvas s = MCanvas
-    { width  :: !Width
-    , height :: !Height
-    , vector :: !(U.MVector s Pixel)
-    }
-
-type Pos  = Int
-type XPos = Int
-type YPos = Int
-
-class CanvasConv c where
-    fromPos :: c -> XPos -> YPos -> Pos
-
-instance CanvasConv Canvas where
-    fromPos Canvas{..} x y = y * width + x
+import           Internal.Types
 
 -- |Black @Pixel@
 blackPixel :: Pixel
@@ -72,7 +42,7 @@ newCanvas :: Width -> Height -> Canvas
 newCanvas w h = Canvas w h (U.replicate (w*h) blackPixel)
 
 readPixel :: Canvas -> XPos -> YPos -> Pixel
-readPixel Canvas{..} x y = vector U.! (y * width + x)
+readPixel Canvas{..} x y = vdata U.! (y * width + x)
 
 writePixel :: Canvas -> Pixel -> XPos -> YPos -> Canvas
 writePixel = undefined

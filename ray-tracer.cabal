@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4c3fa598071358eb1409d6c012bca1cdccb60615c0dc2724c4e2ccc96d3fa70c
+-- hash: 11c8a707553c00b6416f553ccc2ebb2acc3dba17abce8275b6397d8105627586
 
 name:           ray-tracer
 version:        0.1.0.0
@@ -26,8 +26,8 @@ library
   exposed-modules:
       Canvas
       Color
+      Internal.Types
       Point
-      Types
       Vector
   other-modules:
       Paths_ray_tracer
@@ -57,8 +57,8 @@ test-suite ray-tracer-test
   other-modules:
       CanvasSpec
       ColorSpec
+      Internal.TypesSpec
       PointSpec
-      TypesSpec
       Util
       VectorSpec
       Paths_ray_tracer

@@ -9,11 +9,7 @@ module Color
     , hadamar
     ) where
 
-data Color = Color
-    { red   :: !Double
-    , green :: !Double
-    , blue  :: !Double
-    } deriving (Eq, Show)
+import Internal.Types (Color(..))
 
 -- |Add a @Color@ to a @Color@ by adding the components pairwise
 addColor :: Color -> Color -> Color
