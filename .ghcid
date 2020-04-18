@@ -1,0 +1,2 @@
+--command="stack ghci --test ray-tracer:lib ray-tracer:test:ray-tracer-test"
+--test="Main.main"
