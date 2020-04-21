@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 11c8a707553c00b6416f553ccc2ebb2acc3dba17abce8275b6397d8105627586
+-- hash: 6a790dcff20a896b42c2cefe367899354bb2dbbaa09c7d621bac91a33d4cb0d4
 
 name:           ray-tracer
 version:        0.1.0.0
@@ -35,6 +35,8 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , primitive
     , vector
   default-language: Haskell2010
 
@@ -47,6 +49,8 @@ executable ray-tracer.tsk
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , primitive
     , ray-tracer
     , vector
   default-language: Haskell2010
@@ -68,7 +72,9 @@ test-suite ray-tracer-test
   build-depends:
       QuickCheck
     , base >=4.7 && <5
+    , bytestring
     , hspec
+    , primitive
     , ray-tracer
     , vector
   default-language: Haskell2010

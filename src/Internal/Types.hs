@@ -1,5 +1,3 @@
-{-# LANGUAGE DuplicateRecordFields #-}
-
 module Internal.Types where
 
 import qualified Data.Vector.Unboxed as U
@@ -33,15 +31,15 @@ type Height = Int
 data Canvas = Canvas
     { width  :: !Width
     , height :: !Height
-    , vdata :: !(U.Vector Pixel)
-    }
+    , vdata  :: !(U.Vector Pixel)
+    } deriving Show
 
 -- |A @Canvas@ represents a mutable @Canvas@
 data MCanvas s = MCanvas
-    { width  :: !Width
-    , height :: !Height
-    , vdata :: !(U.MVector s Pixel)
-    }
+    { m'width  :: !Width
+    , m'height :: !Height
+    , m'vdata  :: !(U.MVector s Pixel)
+    } 
 
 type Pos  = Int
 type XPos = Int

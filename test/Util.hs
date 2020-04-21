@@ -4,10 +4,11 @@
 
 module Util where
 
+import Canvas (newCanvas, newMCanvas)
+import Control.Monad.ST
+import Internal.Types
 import Test.QuickCheck.Arbitrary
 import Test.QuickCheck.Gen
-import Canvas (newCanvas)
-import Internal.Types
 
 class FloatEq a where
     infix 4 ~==
@@ -35,9 +36,15 @@ instance Arbitrary Point where
 
 instance Arbitrary Canvas where
     arbitrary = do
-        w <- choose (0, 500)
-        h <- choose (0, 500)
+        w <- choose (1, 500)
+        h <- choose (1, 500)
         pure $ newCanvas w h
+
+instance Arbitrary (IO (MCanvas RealWorld)) where
+    arbitrary = return $ newMCanvas 20 20 
+
+instance Arbitrary (ST s (MCanvas s)) where
+    arbitrary = return $ newMCanvas 20 20 
 
 instance Arbitrary Color where
     arbitrary = Color <$> arbitrary <*> arbitrary <*> arbitrary
